@@ -23,16 +23,12 @@ function submitted() {
   var iambenching = $('input[name=iambenching]').val();
   if (isNaN(iambenching) || iambenching <= 0)
     return;
-
-  var lbsorkg = $('select[name=lbsorkg]').val();
-  if (lbsorkg == "kg")
-    iambenching = kgToLbs(iambenching);
-
-  tellme(iambenching);
+  var isLbs = $('select[name=lbsorkg]').val() == "lbs";
+  tellme(iambenching, isLbs);
 }
 
-function tellme(iambenching) {
-  var edus = calcEdus(iambenching);
+function tellme(iambenching, isLbs) {
+  var edus = calcEdus(isLbs ? iambenching : kgToLbs(iambenching));
 
   var msg;
   if (edus < 1) {
@@ -47,7 +43,14 @@ function tellme(iambenching) {
       msg += "not bad.";
   }
 
-  $('#whatareyoubenching').replaceWith('<h1 id="msg">' + msg + '</h1>');
+  var url = "http://edu.n-sch.de/?" + (isLbs ? "lbs" : "kg") + "=" + iambenching;
+
+  $('#whatareyoubenching').replaceWith(
+    '<h1 id="msg">' + msg + '</h1>'
+    + '<p id="urlinfo">Want to share this result? Copy this url: '
+    + '<a href="' + url + '">' + url + '</a> and change the weight accordingly or '
+    + 'replace &quot;lbs&quot; with &quot;kg&quot; and vice versa.</p>'
+  );
   $('#msg').fadeIn(100);
 
 };
@@ -57,10 +60,13 @@ $(document).ready(function() {
   var url_vars = getUrlVars()
   var url_kg   = url_vars["kg"]
   var url_lbs  = url_vars["lbs"]
-  if (!isNaN(url_lbs)) {
-    tellme(url_lbs);
-  } else if (!isNaN(url_kg)) {
-    tellme(kgToLbs(url_kg));
+
+  if (!isNaN(url_lbs) && url_lbs > 0) {
+    tellme(url_lbs, true);
+
+  } else if (!isNaN(url_kg) && url_kg > 0) {
+    tellme(url_kg, false);
+
   } else {
     $("input[name=iambenching]").select();
     $("input[name=iambenching], select[name=lbsorkg]").keyup(function(event) {

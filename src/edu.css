@@ -35,3 +35,18 @@ div p a {
   cursor: pointer;
   color: #222;
 }
+
+p#urlinfo {
+  margin-top: 40px;
+  color: #999;
+  font-size: 11px;
+  text-align: center;
+  display: block;
+}
+p#urlinfo a {
+  color: #555;
+  text-decoration: none;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
