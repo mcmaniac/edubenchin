@@ -15,7 +15,7 @@ function kgToLbs(kg) {
 };
 
 function calcEdus(lbs) {
-  var edus = lbs / 190;
+  var edus = lbs / 185;
   return edus.toFixed(2);
 };
 
@@ -43,10 +43,13 @@ function tellme(iambenching, isLbs) {
       msg += "not bad.";
   }
 
-  var url = "http://edu.n-sch.de/?" + (isLbs ? "lbs" : "kg") + "=" + iambenching;
+  var url = "http://edu.fitnesscirclejerk.com/?" + (isLbs ? "lbs" : "kg") + "=" + iambenching;
 
   $('#whatareyoubenching').replaceWith(
-    '<h1 id="msg">' + msg + '</h1>'
+	'<h2 id="weight">Could Edu bench ' + iambenching + (isLbs ? 'lbs' : 'kg')
+	+ '?</h2>'
+    + '<h1 id="msg">' + msg + '</h1>'
+	+ '<p class="details">Assuming the &quot;classical&quot; unit of 1EDU = 185lbs.</p>'
     + '<p id="urlinfo">Want to share this result? Copy this url: '
     + '<a href="' + url + '">' + url + '</a> and change the weight accordingly or '
     + 'replace &quot;lbs&quot; with &quot;kg&quot; and vice versa.</p>'

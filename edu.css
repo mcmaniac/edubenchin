@@ -36,14 +36,17 @@ div p a {
   color: #222;
 }
 
-p#urlinfo {
+.details {
   margin-top: 40px;
+}
+
+.details, #urlinfo {
   color: #999;
   font-size: 11px;
   text-align: center;
   display: block;
 }
-p#urlinfo a {
+.details a, #urlinfo a {
   color: #555;
   text-decoration: none;
   display: block;
