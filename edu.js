@@ -50,9 +50,8 @@ function tellme(iambenching, isLbs) {
 	+ '?</h2>'
     + '<h1 id="msg">' + msg + '</h1>'
 	+ '<p class="details">Assuming the &quot;classical&quot; unit of 1EDU = 185lbs.</p>'
-    + '<p id="urlinfo">Want to share this result? Copy this url: '
-    + '<a href="' + url + '">' + url + '</a> and change the weight accordingly or '
-    + 'replace &quot;lbs&quot; with &quot;kg&quot; and vice versa.</p>'
+    + '<p id="urlinfo">Share your result by copying the url: '
+    + '<a href="' + url + '">' + url + '</a></p>'
   );
   $('#msg').fadeIn(100);
 
